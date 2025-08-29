@@ -85,7 +85,7 @@
                 showConfirmButton: false,
                 toast: true,
                 position: 'top-end',
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                background: 'linear-gradient(135deg, #ff70a6 0%, #ff4b8b 100%)',
                 color: 'white'
             });
         }
@@ -101,7 +101,7 @@
                     html: '<div style="font-size: 4rem; margin-bottom: 1rem;">🛒</div>No tienes productos en tu carrito',
                     icon: 'info',
                     confirmButtonText: 'Continuar comprando',
-                    confirmButtonColor: '#667eea',
+                    confirmButtonColor: '#ff4b8b',
                     background: 'white',
                     customClass: {
                         popup: 'animated bounceIn'
@@ -120,7 +120,7 @@
                 total += itemTotal;
                 
                 cartHTML += `
-                    <div class="cart-item d-flex justify-content-between align-items-center mb-3 p-3" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 15px; border-left: 4px solid #667eea;">
+                    <div class="cart-item d-flex justify-content-between align-items-center mb-3 p-3" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 15px; border-left: 4px solid #ff4b8b">
                         <div class="d-flex align-items-center">
                             <span style="font-size: 2rem; margin-right: 15px;">${item.emoji}</span>
                             <div>
@@ -136,7 +136,7 @@
                             <button class="btn btn-sm btn-outline-success me-3" onclick="addQuantity(${index})" style="border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">
                                 <i class="fas fa-plus"></i>
                             </button>
-                            <strong style="color: #667eea; min-width: 60px;">${formatCurrency(itemTotal, currency)}</strong>
+                            <strong style="color: #ff4b8b; min-width: 60px;">${formatCurrency(itemTotal, currency)}</strong>
                         </div>
                     </div>
                 `;
@@ -145,7 +145,7 @@
             cartHTML += `</div>
                 <hr style="margin: 2rem 0;">
                 <div class="text-center">
-                    <h3 style="color: #2d3748; font-family: 'Fredoka', cursive;">Total: <span style="color: #667eea;">${formatCurrency(total, currency)}</span></h3>
+                    <h3 style="color: #2d3748; font-family: 'Fredoka', cursive;">Total: <span style="color: #ff4b8b;">${formatCurrency(total, currency)}</span></h3>
                 </div>`;
 
             Swal.fire({
@@ -155,7 +155,7 @@
                 showCancelButton: true,
                 confirmButtonText: '<i class="fas fa-credit-card"></i> Proceder al Pago',
                 cancelButtonText: '<i class="fas fa-shopping-bag"></i> Seguir Comprando',
-                confirmButtonColor: '#667eea',
+                confirmButtonColor: '#ff4b8b',
                 cancelButtonColor: '#718096',
                 customClass: {
                     popup: 'animated fadeInUp'
@@ -202,8 +202,8 @@
                     <div class="text-center">
                         <div style="font-size: 5rem; margin-bottom: 1.5rem;">🎉</div>
                         <h4 style="color: #2d3748; margin-bottom: 1rem;">¡Gracias por tu pedido!</h4>
-                        <p style="color: #718096; margin-bottom: 1rem;">Tu pedido por <strong style="color: #667eea;">${formatCurrency(total, currency)}</strong> ha sido confirmado y está siendo preparado con mucho amor.</p>
-                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 10px; margin: 1rem 0;">
+                        <p style="color: #718096; margin-bottom: 1rem;">Tu pedido por <strong style="color: #ff4b8b;">${formatCurrency(total, currency)}</strong> ha sido confirmado y está siendo preparado con mucho amor.</p>
+                        <div style="background: linear-gradient(135deg, #ff4b8b 0%, #ff70a6 100%); color: white; padding: 15px; border-radius: 10px; margin: 1rem 0;">
                             <i class="fas fa-clock"></i> <strong>Tiempo estimado: 20-25 minutos</strong>
                         </div>
                         <p style="color: #718096;">Recibirás una notificación cuando tu pedido esté listo para recoger o cuando nuestro repartidor esté en camino.</p>
@@ -214,7 +214,7 @@
                 `,
                 icon: 'success',
                 confirmButtonText: '<i class="fas fa-heart"></i> ¡Perfecto!',
-                confirmButtonColor: '#4ecdc4',
+                confirmButtonColor: '#ff70a6',
                 customClass: {
                     popup: 'animated bounceIn'
                 }

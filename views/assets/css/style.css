@@ -5,15 +5,15 @@
         }
         
         :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --warm-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            --cool-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            --dark-color: #2d3748;
-            --light-color: #f7fafc;
-            --text-dark: #1a202c;
-            --text-light: #718096;
+            --primary-gradient: linear-gradient(135deg, #ff70a6 0%, #ff4b8b 100%); /* Rosado principal */
+            --secondary-gradient: linear-gradient(135deg, #2ecc40 0%, #27ae60 100%); /* Verde acento */
+            --accent-gradient: linear-gradient(135deg, #fff 0%, #f8fff5 100%); /* Blanco */
+            --warm-gradient: linear-gradient(135deg, #ffb6c1 0%, #fff 100%); /* Rosado claro */
+            --cool-gradient: linear-gradient(135deg, #fff 0%, #e9f5e1 100%); /* Blanco/verde claro */
+            --dark-color: #ff4b8b; /* Rosado fuerte */
+            --light-color: #fff; /* Blanco */
+            --text-dark: #ff4b8b; /* Rosado fuerte */
+            --text-light: #27ae60; /* Verde */
             --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -45,7 +45,7 @@
         
         /* Navigation */
         .navbar {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--accent-gradient);
             backdrop-filter: blur(20px);
             box-shadow: var(--shadow-light);
             padding: 1rem 0;
@@ -53,7 +53,7 @@
         }
         
         .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.98);
+            background: var(--light-color);
             box-shadow: var(--shadow-medium);
         }
         
@@ -68,7 +68,7 @@
         }
         
         .nav-link {
-            color: var(--text-dark) !important;
+            color: var(--dark-color) !important;
             font-weight: 500;
             margin: 0 15px;
             position: relative;
@@ -143,7 +143,7 @@
         .hero-content {
             position: relative;
             z-index: 10;
-            color: white;
+            color: var(--dark-color);
             text-align: center;
         }
         
@@ -152,7 +152,7 @@
             font-size: 4.5rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 8px rgba(255, 112, 166, 0.2);
             line-height: 1.1;
         }
         
@@ -174,8 +174,8 @@
         }
         
         .btn-hero-primary {
-            background: var(--warm-gradient);
-            color: white;
+            background: var(--primary-gradient);
+            color: #fff;
             border: none;
             padding: 18px 35px;
             font-size: 1.2rem;
@@ -196,9 +196,9 @@
         }
         
         .btn-hero-secondary {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: var(--secondary-gradient);
+            color: #fff;
+            border: 2px solid var(--secondary-gradient);
             padding: 16px 33px;
             font-size: 1.2rem;
             font-weight: 600;
@@ -229,14 +229,14 @@
             display: flex;
             align-items: center;
             gap: 0.8rem;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--warm-gradient);
             padding: 0.8rem 1.5rem;
             border-radius: 50px;
             backdrop-filter: blur(10px);
         }
         
         .hero-feature i {
-            color: #ffd700;
+            color: var(--primary-gradient);
             font-size: 1.2rem;
         }
         
@@ -249,7 +249,7 @@
             font-family: 'Fredoka', cursive;
             font-size: 3rem;
             font-weight: 700;
-            color: var(--text-dark);
+            color: var(--dark-color);
             margin-bottom: 3rem;
             text-align: center;
             position: relative;
@@ -270,11 +270,11 @@
         /* Product Cards */
         .products-section {
             padding: 100px 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: var(--accent-gradient);
         }
         
         .product-card {
-            background: white;
+            background: var(--accent-gradient);
             border-radius: 25px;
             overflow: hidden;
             box-shadow: var(--shadow-light);
@@ -307,7 +307,7 @@
         
         .product-image {
             height: 280px;
-            background: var(--cool-gradient);
+            background: var(--warm-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -348,12 +348,11 @@
             font-family: 'Fredoka', cursive;
             font-size: 1.5rem;
             font-weight: 600;
-            color: var(--text-dark);
+            color: var(--dark-color);
             margin-bottom: 0.8rem;
         }
         
         .product-description {
-            color: var(--text-light);
             margin-bottom: 1.5rem;
             line-height: 1.6;
         }
@@ -361,7 +360,7 @@
         .product-price {
             font-size: 1.8rem;
             font-weight: 700;
-            background: var(--secondary-gradient);
+            background: black;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -380,13 +379,14 @@
         }
         
         .rating-text {
-            color: var(--text-light);
+            color: var(--secondary-gradient);
             font-size: 0.9rem;
             margin-left: 10px;
         }
         
         .btn-add-cart {
             background: var(--primary-gradient);
+            color: #fff;
             color: white;
             border: none;
             padding: 15px 25px;
@@ -427,7 +427,7 @@
         .feature-card {
             text-align: center;
             padding: 3rem 2rem;
-            background: white;
+            background: var(--accent-gradient);
             border-radius: 20px;
             box-shadow: var(--shadow-light);
             transition: all 0.3s ease;
@@ -444,7 +444,7 @@
             width: 80px;
             height: 80px;
             margin: 0 auto 1.5rem;
-            background: var(--accent-gradient);
+            background: var(--secondary-gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -462,12 +462,11 @@
             font-family: 'Fredoka', cursive;
             font-size: 1.5rem;
             font-weight: 600;
-            color: var(--text-dark);
+            color: var(--dark-color);
             margin-bottom: 1rem;
         }
         
         .feature-description {
-            color: var(--text-light);
             line-height: 1.6;
         }
         
@@ -475,7 +474,7 @@
         .stats-section {
             padding: 80px 0;
             background: var(--primary-gradient);
-            color: white;
+            color: #fff;
         }
         
         .stat-item {
@@ -498,8 +497,8 @@
         
         /* Footer */
         .footer {
-            background: var(--dark-color);
-            color: white;
+            background: var(--primary-gradient);
+            color: #fff;
             padding: 60px 0 30px;
         }
         
@@ -515,7 +514,7 @@
         }
         
         .footer-link {
-            color: #a0aec0;
+            color: var(--secondary-gradient);
             text-decoration: none;
             transition: color 0.3s ease;
             display: block;
@@ -523,7 +522,7 @@
         }
         
         .footer-link:hover {
-            color: white;
+            color: var(--primary-gradient);
         }
         
         .social-icons {
@@ -667,7 +666,7 @@
         
         .pay-btn {
             background: var(--primary-gradient);
-            color: white;
+            color: #fff;
             border: none;
             padding: 15px;
             border-radius: 10px;
@@ -689,7 +688,7 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: white;
+            background: var(--accent-gradient);
             border-radius: 50px;
             padding: 10px 15px;
             box-shadow: var(--shadow-heavy);
