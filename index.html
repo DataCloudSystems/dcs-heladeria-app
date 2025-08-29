@@ -76,42 +76,46 @@
 
     <!-- Hero Section Rediseñada -->
     <section id="inicio" class="hero-section">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">
-                    Heladeria y Batidos del Caribe
-                </h1>
-                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
-                    Descubre el paraíso de los sabores con nuestros helados artesanales. 
-                    Cada cucharada es una experiencia única hecha con ingredientes premium 
-                    y mucho amor.
-                </p>
-                <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
-                    <a href="#productos" class="btn-hero-primary">
-                        <i class="fas fa-ice-cream"></i>
-                        Explorar Sabores
-                    </a>
-                    <a href="#nosotros" class="btn-hero-secondary">
-                        <i class="fas fa-play"></i>
-                        Ver Historia
-                    </a>
+        <div id="heroCarousel" class="carousel slide h-100 w-100" data-bs-ride="carousel" style="min-height: 80vh;">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner h-100 w-100">
+                <div class="carousel-item active h-100 w-100">
+                    <img src="views/assets/img/CHOCOCOPA .png" class="d-block w-100 h-100" alt="Choco Copa" style="object-fit:cover; min-height:80vh;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2>Heladería y Batidos del Caribe</h2>
+                        <p>Descubre el paraíso de los sabores con nuestros helados artesanales.</p>
+                        <a href="#productos" class="btn btn-primary">Explorar Sabores</a>
+                    </div>
                 </div>
-                
-                <div class="hero-features" data-aos="fade-up" data-aos-delay="800">
-                    <div class="hero-feature">
-                        <i class="fas fa-truck"></i>
-                        <span>Envío gratis en pedidos > ₡5000</span>
+                <div class="carousel-item h-100 w-100">
+                    <img src="views/assets/img/MILKSHAKE.png" class="d-block w-100 h-100" alt="Milkshake" style="object-fit:cover; min-height:80vh;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2>Ingredientes 100% Naturales</h2>
+                        <p>Cada cucharada es una experiencia única hecha con ingredientes premium y mucho amor.</p>
+                        <a href="#nosotros" class="btn btn-secondary">Ver Historia</a>
                     </div>
-                    <div class="hero-feature">
-                        <i class="fas fa-leaf"></i>
-                        <span>Ingredientes 100% naturales</span>
-                    </div>
-                    <div class="hero-feature">
-                        <i class="fas fa-award"></i>
-                        <span>Premiado por su calidad</span>
+                </div>
+                <div class="carousel-item h-100 w-100">
+                    <img src="views/assets/img/COPO HELADO.png" class="d-block w-100 h-100" alt="Copo Helado" style="object-fit:cover; min-height:80vh;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2>Premiado por su calidad</h2>
+                        <p>Envío gratis en pedidos &gt; ₡5000 y atención personalizada.</p>
+                        <a href="#contacto" class="btn btn-success">Contáctanos</a>
                     </div>
                 </div>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
         </div>
     </section>
 
