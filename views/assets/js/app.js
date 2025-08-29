@@ -359,8 +359,102 @@
         });
 
         // Add to cart button animation
-        document.querySelectorAll('.btn-add-cart').forEach(btn => {
-            btn.addEventListener('click', function() {
-                gsap.to(this, {duration: 0.1, scale: 0.95, yoyo: true, repeat: 1});
-            });
-        });
+                document.querySelectorAll('.btn-add-cart').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                                gsap.to(this, {duration: 0.1, scale: 0.95, yoyo: true, repeat: 1});
+                        });
+                });
+
+                // Datos de productos para el modal
+                const productDetailsData = {
+                        'CHOCO COPA': {
+                                name: 'CHOCO COPA',
+                                image: 'views/assets/img/CHOCOCOPA .png',
+                                rating: 4.9,
+                                reviews: 234,
+                                description: 'Helado de chocolate con toppings y salsa especial.',
+                                price: 5.50,
+                                emoji: '🍫'
+                        },
+                        'MANGONADA': {
+                                name: 'MANGONADA',
+                                image: 'views/assets/img/2.png',
+                                rating: 4.8,
+                                reviews: 189,
+                                description: 'Refrescante mangonada tropical con chile y limón.',
+                                price: 6.00,
+                                emoji: '🥭'
+                        },
+                        'MILKSHAKE': {
+                                name: 'MILKSHAKE',
+                                image: 'views/assets/img/MILKSHAKE.png',
+                                rating: 4.7,
+                                reviews: 156,
+                                description: 'Milkshake cremoso con galleta y chocolate.',
+                                price: 5.25,
+                                emoji: '🥤'
+                        },
+                        'Vainilla Madagascar': {
+                                name: 'Vainilla Madagascar',
+                                image: 'views/assets/img/logo heladeria con edicion.png',
+                                rating: 4.9,
+                                reviews: 298,
+                                description: 'Helado de vainilla premium de Madagascar.',
+                                price: 4.75,
+                                emoji: '🍦'
+                        },
+                        'Coco Caribeño': {
+                                name: 'Coco Caribeño',
+                                image: 'views/assets/img/Diseño Sticker heladería.png',
+                                rating: 4.6,
+                                reviews: 142,
+                                description: 'Helado de coco con sabor caribeño.',
+                                price: 5.10,
+                                emoji: '🥥'
+                        },
+                        'Limón Siciliano': {
+                                name: 'Limón Siciliano',
+                                image: 'views/assets/img/COPO HELADO.png',
+                                rating: 4.8,
+                                reviews: 167,
+                                description: 'Helado refrescante de limón siciliano.',
+                                price: 4.90,
+                                emoji: '🍋'
+                        }
+                };
+
+                // Función para mostrar el modal de detalles
+                window.showProductDetails = function(productName) {
+                        const data = productDetailsData[productName];
+                        if (!data) return;
+                        // Actualizar título
+                        document.getElementById('productDetailsModalLabel').textContent = data.name;
+                        // Actualizar cuerpo
+                        document.getElementById('productDetailsModalBody').innerHTML = `
+                                <div class="row">
+                                    <div class="col-md-5 text-center">
+                                        <img src="${data.image}" alt="${data.name}" style="max-width:100%; max-height:300px; object-fit:contain; border-radius:20px;">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="mb-2">
+                                            <span style="font-size:1.5rem; color:#ff4b8b;">${data.emoji}</span>
+                                            <span class="ms-2">
+                                                ${'<i class="fas fa-star" style="color:#ffd700"></i>'.repeat(Math.floor(data.rating))}
+                                                ${data.rating % 1 ? '<i class="fas fa-star-half-alt" style="color:#ffd700"></i>' : ''}
+                                                <span class="ms-2 text-muted">(${data.rating}) ${data.reviews} reseñas</span>
+                                            </span>
+                                        </div>
+                                        <p class="mb-3">${data.description}</p>
+                                        <div class="mb-3">
+                                            <span class="product-price" data-usd="${data.price}">${formatCurrency(currency === 'CRC' ? convertToColones(data.price) : data.price, currency)}</span>
+                                        </div>
+                                        <button class="btn btn-add-cart w-100" onclick="addToCart('${data.name}', ${data.price}, '${data.emoji}')">
+                                            <i class="fas fa-plus"></i> Agregar al Carrito
+                                        </button>
+                                    </div>
+                                </div>
+                        `;
+                        // Mostrar modal Bootstrap
+                        const modal = new bootstrap.Modal(document.getElementById('productDetailsModal'));
+                        modal.show();
+                }
