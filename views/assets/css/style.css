@@ -1,3 +1,14 @@
+@media (max-width: 480px) {
+        .navbar-brand {
+            font-size: 1.2rem !important;
+            max-width: 90vw;
+            white-space: normal;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            line-height: 1.2;
+            text-align: left;
+        }
+}
 * {
             margin: 0;
             padding: 0;
