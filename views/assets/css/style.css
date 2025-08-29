@@ -134,8 +134,6 @@
         /* Hero Section Rediseñada */
         .hero-section {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1570197788417-0e82375c9371?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
-            background-size: cover;
             position: relative;
             display: flex;
             align-items: center;
