@@ -522,20 +522,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <!-- Custom JS -->
     <script src="./views/assets/js/app.js"></script>
-    <script>
-    // Mostrar/ocultar botón scroll arriba
-    const scrollTopBtn = document.getElementById('scrollTopBtn');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 200) {
-            scrollTopBtn.style.display = 'flex';
-        } else {
-            scrollTopBtn.style.display = 'none';
-        }
-    });
-    // Scroll suave al hacer click
-    scrollTopBtn.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    </script>
+    <script src="./views/assets/js/botonScroll.js"></script>
 </body>
 </html>
