@@ -76,17 +76,28 @@
             // GSAP animation for cart button
             gsap.to('.cart-btn', {duration: 0.1, scale: 1.1, yoyo: true, repeat: 1});
             
+            // Toast compacto sin emoji grande; usa miniatura si existe
+            let productImg = null;
+            try {
+                if (typeof productDetailsData !== "undefined" && productDetailsData[name] && productDetailsData[name].image) {
+                    productImg = productDetailsData[name].image;
+                }
+            } catch (e) {}
+
+            const toastHtml = productImg
+                ? `<div class="toast-row"><img class="toast-thumb" src="${productImg}" alt="${name}"><div><div class="toast-title">${name}</div><div class="toast-sub">Agregado al carrito</div></div></div>`
+                : `<div class="toast-row"><span class="toast-icon"><i class="fa-solid fa-ice-cream"></i></span><div><div class="toast-title">${name}</div><div class="toast-sub">Agregado al carrito</div></div></div>`;
+
             Swal.fire({
-                title: '¡Agregado al carrito!',
-                html: `<div style="font-size: 3rem; margin-bottom: 1rem;">${emoji}</div>
-                       <strong>${name}</strong> ha sido agregado a tu carrito`,
-                icon: 'success',
-                timer: 2000,
+                title: "",
+                html: toastHtml,
+                timer: 1600,
                 showConfirmButton: false,
                 toast: true,
-                position: 'top-end',
-                background: 'linear-gradient(135deg, #ff70a6 0%, #ff4b8b 100%)',
-                color: 'white'
+                position: "top-end",
+                width: 300,
+                background: "#fff",
+                customClass: { popup: "cart-toast" }
             });
         }
 
@@ -501,3 +512,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Flujo de checkout: pagar en caja (sin pasarela)
+
