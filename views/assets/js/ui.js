@@ -78,9 +78,17 @@ document.addEventListener('DOMContentLoaded', function(){
   // Extra UI in product modal (badges/specs)
   const modalEl = document.getElementById('productDetailsModal');
   const currencyToggle = document.querySelector('.currency-toggle');
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
   if (modalEl) {
     modalEl.addEventListener('show.bs.modal', function(){
       if (currencyToggle) currencyToggle.classList.add('show');
+      // Send scroll-to-top button behind the modal while open
+      if (scrollTopBtn) {
+        scrollTopBtn.dataset.prevZ = scrollTopBtn.style.zIndex || '';
+        scrollTopBtn.dataset.prevPe = scrollTopBtn.style.pointerEvents || '';
+        scrollTopBtn.style.zIndex = '100';
+        scrollTopBtn.style.pointerEvents = 'none';
+      }
       try {
         const body = document.getElementById('productDetailsModalBody'); if (!body) return;
         const right = body.querySelector('.col-md-7'); if (!right) return;
@@ -99,6 +107,10 @@ document.addEventListener('DOMContentLoaded', function(){
     });
     modalEl.addEventListener('hidden.bs.modal', function(){
       if (currencyToggle) currencyToggle.classList.remove('show');
+      if (scrollTopBtn) {
+        scrollTopBtn.style.zIndex = scrollTopBtn.dataset.prevZ || '';
+        scrollTopBtn.style.pointerEvents = scrollTopBtn.dataset.prevPe || '';
+      }
     });
   }
 });
