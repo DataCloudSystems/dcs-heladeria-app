@@ -1,0 +1,20 @@
+/* Hero Section */
+.hero-section { height: 100vh; position: relative; display: flex; align-items: center; overflow: hidden; }
+.hero-content { position: relative; z-index: 10; color: var(--dark-color); text-align: center; }
+.hero-title { font-family: 'Fredoka', cursive; font-size: 4.5rem; font-weight: 700; margin-bottom: 1.5rem; text-shadow: 2px 2px 8px rgba(255,112,166,.2); line-height: 1.1; }
+.hero-subtitle { font-size: 1.4rem; margin-bottom: 2.5rem; opacity: .95; line-height: 1.6; max-width: 700px; margin-left: auto; margin-right: auto; }
+.hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+.btn-hero-primary { background: var(--primary-gradient); color: #fff; border: none; padding: 18px 35px; font-size: 1.2rem; font-weight: 600; border-radius: 50px; transition: all .3s ease; box-shadow: var(--shadow-medium); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+.btn-hero-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-heavy); color: white; }
+.btn-hero-secondary { background: var(--secondary-gradient); color: #fff; border: 2px solid var(--secondary-gradient); padding: 16px 33px; font-size: 1.2rem; font-weight: 600; border-radius: 50px; transition: all .3s ease; backdrop-filter: blur(10px); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+.btn-hero-secondary:hover { background: rgba(255,255,255,.3); transform: translateY(-3px); color: white; }
+.hero-features { display: flex; justify-content: center; gap: 2rem; margin-top: 3rem; flex-wrap: wrap; }
+.hero-feature { display: flex; align-items: center; gap: .8rem; background: var(--warm-gradient); padding: .8rem 1.5rem; border-radius: 50px; backdrop-filter: blur(10px); }
+.hero-feature i { font-size: 1.2rem; }
+.hero-feature span { font-size: .9rem; }
+
+/* Carousel overlay for better caption contrast */
+.carousel-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.25), rgba(0,0,0,.35)); }
+.carousel-item > img { position: relative; z-index: 0; }
+.carousel-caption { z-index: 1; }
+

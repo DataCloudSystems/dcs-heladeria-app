@@ -1,0 +1,6 @@
+/* Stats Section */
+.stats-section { padding: 80px 0; background: var(--primary-gradient); color: #fff; }
+.stat-item { text-align: center; margin-bottom: 2rem; }
+.stat-number { font-family: 'Fredoka', cursive; font-size: 3.5rem; font-weight: 700; display: block; margin-bottom: .5rem; }
+.stat-label { font-size: 1.1rem; opacity: .9; }
+

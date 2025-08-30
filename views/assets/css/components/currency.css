@@ -1,0 +1,9 @@
+/* Currency Toggle */
+.currency-toggle { position: fixed; bottom: 20px; right: 20px; background: var(--accent-gradient); border-radius: 50px; padding: 10px 15px; box-shadow: var(--shadow-heavy); display: flex; align-items: center; gap: 10px; z-index: 100; }
+.currency-toggle span { font-weight: 500; color: var(--text-dark); }
+.toggle-switch { position: relative; display: inline-block; width: 60px; height: 30px; }
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: var(--primary-gradient); transition: .4s; border-radius: 34px; }
+.slider:before { position: absolute; content: ""; height: 22px; width: 22px; left: 4px; bottom: 4px; background: white; transition: .4s; border-radius: 50%; }
+input:checked + .slider:before { transform: translateX(30px); }
+
