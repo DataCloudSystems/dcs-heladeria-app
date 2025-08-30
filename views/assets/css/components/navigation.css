@@ -1,0 +1,54 @@
+/* Navigation */
+.navbar {
+    background: var(--accent-gradient);
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-light);
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled { background: var(--light-color); box-shadow: var(--shadow-medium); }
+
+.navbar-brand {
+    font-family: 'Fredoka', cursive;
+    font-weight: 700;
+    font-size: 2rem;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-link {
+    color: var(--dark-color) !important;
+    font-weight: 500;
+    margin: 0 15px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0; height: 2px; bottom: -5px; left: 50%;
+    background: var(--primary-gradient);
+    transition: all 0.3s ease; transform: translateX(-50%);
+}
+.nav-link:hover::after { width: 100%; }
+
+.cart-btn {
+    position: relative; background: var(--primary-gradient);
+    border: none; color: white; padding: 12px 20px;
+    border-radius: 50px; font-weight: 600; transition: all 0.3s ease;
+    box-shadow: var(--shadow-light);
+}
+.cart-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-medium); }
+
+.cart-count {
+    position: absolute; top: -8px; right: -8px;
+    background: var(--secondary-gradient); color: white;
+    border-radius: 50%; width: 24px; height: 24px; font-size: 0.8rem;
+    display: flex; align-items: center; justify-content: center; font-weight: 700;
+    animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%{transform:scale(1)} 50%{transform:scale(1.1)} 100%{transform:scale(1)} }
+

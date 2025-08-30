@@ -5,6 +5,14 @@ document.addEventListener('DOMContentLoaded', function(){
     AOS.init({ duration: 1000, once: true, offset: 100 });
   }
 
+  // Bootstrap carousel tweaks
+  try {
+    const hero = document.getElementById('heroCarousel');
+    if (hero && window.bootstrap && bootstrap.Carousel) {
+      new bootstrap.Carousel(hero, { interval: 5000, ride: false, pause: 'hover', touch: true, wrap: true });
+    }
+  } catch (e) { /* noop */ }
+
   // Smooth scrolling for internal anchors
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
@@ -69,8 +77,18 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // Extra UI in product modal (badges/specs)
   const modalEl = document.getElementById('productDetailsModal');
+  const currencyToggle = document.querySelector('.currency-toggle');
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
   if (modalEl) {
     modalEl.addEventListener('show.bs.modal', function(){
+      if (currencyToggle) currencyToggle.classList.add('show');
+      // Send scroll-to-top button behind the modal while open
+      if (scrollTopBtn) {
+        scrollTopBtn.dataset.prevZ = scrollTopBtn.style.zIndex || '';
+        scrollTopBtn.dataset.prevPe = scrollTopBtn.style.pointerEvents || '';
+        scrollTopBtn.style.zIndex = '100';
+        scrollTopBtn.style.pointerEvents = 'none';
+      }
       try {
         const body = document.getElementById('productDetailsModalBody'); if (!body) return;
         const right = body.querySelector('.col-md-7'); if (!right) return;
@@ -86,6 +104,13 @@ document.addEventListener('DOMContentLoaded', function(){
           const priceBlock = (right.querySelector('.product-price')||{}).parentElement || right.firstChild; right.insertBefore(specs, priceBlock);
         }
       } catch(e) { console.warn('Enhance product modal failed', e); }
+    });
+    modalEl.addEventListener('hidden.bs.modal', function(){
+      if (currencyToggle) currencyToggle.classList.remove('show');
+      if (scrollTopBtn) {
+        scrollTopBtn.style.zIndex = scrollTopBtn.dataset.prevZ || '';
+        scrollTopBtn.style.pointerEvents = scrollTopBtn.dataset.prevPe || '';
+      }
     });
   }
 });

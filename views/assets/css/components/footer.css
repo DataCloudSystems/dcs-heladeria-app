@@ -1,0 +1,9 @@
+/* Footer */
+.footer { background: var(--primary-gradient); color: #fff; padding: 60px 0 30px; }
+.footer-title { font-family: 'Fredoka', cursive; font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; background: var(--warm-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.footer-link { color: var(--secondary-gradient); text-decoration: none; transition: color .3s ease; display: block; margin-bottom: .8rem; }
+.footer-link:hover { color: var(--primary-gradient); }
+.social-icons { display: flex; gap: 15px; }
+.social-icon { width: 45px; height: 45px; background: var(--primary-gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all .3s ease; }
+.social-icon:hover { transform: translateY(-3px) scale(1.1); color: white; }
+
