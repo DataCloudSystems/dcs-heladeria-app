@@ -69,8 +69,10 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // Extra UI in product modal (badges/specs)
   const modalEl = document.getElementById('productDetailsModal');
+  const currencyToggle = document.querySelector('.currency-toggle');
   if (modalEl) {
     modalEl.addEventListener('show.bs.modal', function(){
+      if (currencyToggle) currencyToggle.classList.add('show');
       try {
         const body = document.getElementById('productDetailsModalBody'); if (!body) return;
         const right = body.querySelector('.col-md-7'); if (!right) return;
@@ -86,6 +88,9 @@ document.addEventListener('DOMContentLoaded', function(){
           const priceBlock = (right.querySelector('.product-price')||{}).parentElement || right.firstChild; right.insertBefore(specs, priceBlock);
         }
       } catch(e) { console.warn('Enhance product modal failed', e); }
+    });
+    modalEl.addEventListener('hidden.bs.modal', function(){
+      if (currencyToggle) currencyToggle.classList.remove('show');
     });
   }
 });
