@@ -5,6 +5,14 @@ document.addEventListener('DOMContentLoaded', function(){
     AOS.init({ duration: 1000, once: true, offset: 100 });
   }
 
+  // Bootstrap carousel tweaks
+  try {
+    const hero = document.getElementById('heroCarousel');
+    if (hero && window.bootstrap && bootstrap.Carousel) {
+      new bootstrap.Carousel(hero, { interval: 5000, ride: false, pause: 'hover', touch: true, wrap: true });
+    }
+  } catch (e) { /* noop */ }
+
   // Smooth scrolling for internal anchors
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
