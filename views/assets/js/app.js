@@ -153,7 +153,7 @@
                 html: cartHTML,
                 width: '700px',
                 showCancelButton: true,
-                confirmButtonText: '<i class="fas fa-credit-card"></i> Proceder al Pago',
+                confirmButtonText: '<i class="fas fa-store"></i> Pagar en caja',
                 cancelButtonText: '<i class="fas fa-shopping-bag"></i> Seguir Comprando',
                 confirmButtonColor: '#ff4b8b',
                 cancelButtonColor: '#718096',
@@ -162,10 +162,42 @@
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Show payment modal
-                    document.getElementById('totalAmount').textContent = formatCurrency(total, currency);
-                    document.getElementById('paymentModal').classList.add('active');
+                    checkoutAtCounter(total);
                 }
+            });
+        }
+
+        // Nuevo flujo: pagar en caja (sin pasarela)
+        function checkoutAtCounter(total) {
+            const orderCode = 'HC' + Date.now().toString().slice(-6);
+            const lines = cart.map(item => {
+                const unit = currency === 'CRC' ? convertToColones(item.originalPrice) : item.originalPrice;
+                const sub = unit * item.quantity;
+                return `<div class="d-flex justify-content-between mb-1"><span>${item.quantity} × ${item.name}</span><strong>${formatCurrency(sub, currency)}</strong></div>`;
+            }).join('');
+            Swal.fire({
+                title: 'Pagar en caja',
+                html: `
+                    <div>
+                        <div class="mb-3 p-3" style="background:linear-gradient(135deg,#f8f9fa,#edf2f7);border-radius:12px;">
+                            ${lines}
+                            <hr>
+                            <div class="d-flex justify-content-between"><span>Total</span><strong style="color:#ff4b8b;">${formatCurrency(total, currency)}</strong></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="mb-2" style="font-family:'Fredoka',cursive;font-size:1.1rem;color:#2d3748;">Código de orden</div>
+                            <div style="font-size:1.8rem;font-weight:800;color:#ff4b8b;letter-spacing:1px;">${orderCode}</div>
+                            <div class="mt-2 text-muted" style="font-size:.9rem;">Muestra este código en caja para pagar. Reservamos tu pedido por 15 minutos.</div>
+                        </div>
+                    </div>
+                `,
+                icon: 'info',
+                confirmButtonText: '<i class="fas fa-check"></i> Listo',
+                confirmButtonColor: '#ff4b8b'
+            }).then(() => {
+                cart = [];
+                cartCount = 0;
+                updateCartCount();
             });
         }
 
@@ -222,41 +254,10 @@
                 cart = [];
                 cartCount = 0;
                 updateCartCount();
-                closePayment();
             });
         }
 
-        // Payment form handling
-        document.getElementById('paymentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Calculate total
-            let total = 0;
-            cart.forEach(item => {
-                const itemPrice = currency === 'CRC' ? convertToColones(item.originalPrice) : item.originalPrice;
-                total += itemPrice * item.quantity;
-            });
             // Simulate payment processing
-            Swal.fire({
-                title: 'Procesando pago...',
-                html: '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div><p class="mt-3">Por favor espera</p>',
-                showConfirmButton: false,
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading()
-                }
-            });
-            // Simulate API call
-            setTimeout(() => {
-                Swal.close();
-                closePayment(); // Cierra el modal de pago automáticamente
-                processOrder(total);
-            }, 2000);
-        });
-
-        function closePayment() {
-            document.getElementById('paymentModal').classList.remove('active');
-        }
-
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -458,3 +459,45 @@
                         const modal = new bootstrap.Modal(document.getElementById('productDetailsModal'));
                         modal.show();
                 }
+                
+// UI extra para modal de producto: badges + lista de especificaciones
+document.addEventListener('DOMContentLoaded', function() {
+    const modalEl = document.getElementById('productDetailsModal');
+    if (!modalEl) return;
+    modalEl.addEventListener('show.bs.modal', function() {
+        try {
+            const body = document.getElementById('productDetailsModalBody');
+            if (!body) return;
+            const right = body.querySelector('.col-md-7');
+            if (!right) return;
+            // Badges (si no existen)
+            if (!right.querySelector('.product-meta')) {
+                const badges = document.createElement('div');
+                badges.className = 'd-flex flex-wrap gap-2 mb-3 product-meta';
+                badges.innerHTML = [
+                    '<span class="badge"><i class="fa-solid fa-leaf me-1"></i>Natural</span>',
+                    '<span class="badge"><i class="fa-solid fa-snowflake me-1"></i>Helado</span>',
+                    '<span class="badge"><i class="fa-solid fa-star me-1"></i>Top ventas</span>'
+                ].join('');
+                const p = right.querySelector('p');
+                right.insertBefore(badges, p || right.firstChild);
+            }
+            // Lista de especificaciones (si no existe)
+            if (!right.querySelector('.spec-list')) {
+                const specs = document.createElement('ul');
+                specs.className = 'list-inline text-muted small mb-3 spec-list';
+                specs.innerHTML = [
+                    '<li class="list-inline-item me-3"><i class="fa-solid fa-ice-cream me-1"></i> 1 bola</li>',
+                    '<li class="list-inline-item me-3"><i class="fa-solid fa-weight-scale me-1"></i> 200 g</li>',
+                    '<li class="list-inline-item"><i class="fa-solid fa-fire me-1"></i> 250 kcal</li>'
+                ].join('');
+                const priceBlock = right.querySelector('.product-price')?.parentElement || right.firstChild;
+                right.insertBefore(specs, priceBlock);
+            }
+        } catch (e) {
+            console.warn('Enhance product modal failed', e);
+        }
+    });
+});
+
+// Flujo de checkout: pagar en caja (sin pasarela)
