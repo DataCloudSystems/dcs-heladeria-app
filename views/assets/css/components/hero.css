@@ -52,24 +52,47 @@
 }
 .carousel-indicators .active { background: #fff; transform: scale(1.1); }
 
-/* Video Hero */
-.video-hero { position: relative; height: 100%; min-height: 80vh; }
-.video-hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.video-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.25), rgba(0,0,0,.35)); pointer-events: none; }
-.video-hero .carousel-caption { position: absolute; left: 50%; bottom: 10%; transform: translateX(-50%); width: min(92%, 720px); }
-
-/* Use dynamic viewport units when available */
-@supports (height: 100svh) {
-  .hero-section { height: 100svh; }
+/* HERO: altura fluida y video de fondo */
+.hero-section{
+  position: relative;
+  min-height: 80svh;       /* usa svh para móviles con barra dinámica */
+  isolation: isolate;      /* para capas/overlays si las usas */
 }
 
-/* Mobile tweaks */
-@media (max-width: 576px) {
-  .video-hero { min-height: 70svh !important; }
-  .video-hero .carousel-caption { bottom: 6%; padding: .75rem 1rem; }
+.video-hero{
+  position: absolute;
+  inset: 0;                /* top:0; right:0; bottom:0; left:0 */
+  overflow: hidden;
 }
 
-/* Optional: Respect reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-  .video-hero video { animation: none; }
+/* Por defecto: llenar el contenedor (se recorta si hace falta) */
+.video-hero > video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* prueba "contain" si no quieres recortes */
+  object-position: 50% 50%;/* mueve el foco sin reencodar el video */
+  display: block;
 }
+
+/* En móviles altos, sube un poco el foco (evita cortar sujeto) */
+@media (max-width: 768px){
+  .hero-section{ min-height: 90svh; }
+  .video-hero > video{ object-position: 50% 35%; }
+}
+
+/* Si en TU caso es vital no recortar nada en pantallas muy angostas,
+   Forzamos contain SOLO en móviles pequeños (aceptando barras) */
+@media (max-width: 420px){
+  .video-hero > video{
+    object-fit: contain;
+    background: #000; /* barras limpias */
+  }
+}
+
+/* Opcional: un overlay suave para legibilidad de textos encima del video */
+.hero-overlay{
+  position: relative;      /* queda por encima porque .video-hero es absolute */
+  z-index: 1;
+  color: #fff;
+}
+.hero-overlay .btn{ position: relative; z-index: 1; }
