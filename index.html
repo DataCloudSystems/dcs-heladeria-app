@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="./views/assets/css/style.css">
 </head>
 <body>
-    <!-- Loading Screen -->
+    <!-- Loading Screen-->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-content">
             <div class="loading-ice-cream">🍦</div>
@@ -78,7 +78,14 @@
 
     <!-- Hero Section Rediseñada -->
     <section id="inicio" class="hero-section">
-        <div id="heroCarousel" class="carousel slide carousel-fade h-100 w-100" data-bs-ride="carousel" data-bs-interval="5000" style="min-height: 80vh;">
+        <div class="video-hero position-relative h-100 w-100" style="min-height: 80vh;">
+            <video class="w-100 h-100" autoplay muted loop playsinline preload="metadata" poster="views/assets/img/CHOCOCOPA .png" style="object-fit: cover; min-height: 80vh;">
+                <!-- Reemplaza el src por tu video local si lo deseas -->
+                <source src="./views/assets/videos/video1.mp4" type="video/mp4">
+                Tu navegador no soporta video HTML5.
+            </video>
+        </div>
+        <div id="heroCarousel" class="carousel slide carousel-fade h-100 w-100" data-bs-ride="carousel" data-bs-interval="5000" style="min-height: 80vh; display: none;">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
