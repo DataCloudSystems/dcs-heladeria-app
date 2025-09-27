@@ -79,9 +79,8 @@
     <!-- Hero Section Rediseñada -->
     <section id="inicio" class="hero-section">
         <div class="video-hero position-relative h-100 w-100" style="min-height: 80vh;">
-            <video class="w-100 h-100" autoplay muted loop playsinline preload="metadata" poster="views/assets/img/CHOCOCOPA .png" style="object-fit: cover; min-height: 80vh;">
-                <!-- Reemplaza el src por tu video local si lo deseas -->
-                <source src="./views/assets/videos/videoPrueba.mp4" type="video/mp4">
+            <video id="heroVideo" class="w-100 h-100" autoplay muted loop playsinline preload="metadata" poster="views/assets/img/CHOCOCOPA .png" style="object-fit: cover; min-height: 80vh;" data-desktop-src="./views/assets/videos/videoPrueba.mp4" data-mobile-src="./views/assets/videos/videoResponsivo.mp4">
+                <source id="heroVideoSource" src="./views/assets/videos/videoPrueba.mp4" type="video/mp4">
                 Tu navegador no soporta video HTML5.
             </video>
         </div>
@@ -744,6 +743,41 @@
 
     <script>
         (function () {
+            const heroVideo = document.getElementById('heroVideo');
+            const heroVideoSource = document.getElementById('heroVideoSource');
+            if (heroVideo && heroVideoSource) {
+                const desktopSrc = heroVideo.getAttribute('data-desktop-src');
+                const mobileSrc = heroVideo.getAttribute('data-mobile-src');
+                const mediaQuery = window.matchMedia('(max-width: 768px)');
+                const setHeroVideoSource = () => {
+                    if (!desktopSrc || !mobileSrc) {
+                        return;
+                    }
+                    const shouldUseMobile = mediaQuery.matches;
+                    const desiredSrc = shouldUseMobile ? mobileSrc : desktopSrc;
+                    if (heroVideoSource.getAttribute('src') === desiredSrc) {
+                        return;
+                    }
+                    const wasPlaying = !heroVideo.paused && !heroVideo.ended;
+                    heroVideoSource.setAttribute('src', desiredSrc);
+                    heroVideo.load();
+                    if (wasPlaying) {
+                        const playPromise = heroVideo.play();
+                        if (playPromise && typeof playPromise.catch === 'function') {
+                            playPromise.catch(() => {});
+                        }
+                    }
+                };
+                setHeroVideoSource();
+                if (typeof mediaQuery.addEventListener === 'function') {
+                    mediaQuery.addEventListener('change', setHeroVideoSource);
+                } else if (typeof mediaQuery.addListener === 'function') {
+                    mediaQuery.addListener(setHeroVideoSource);
+                } else {
+                    window.addEventListener('resize', setHeroVideoSource);
+                }
+            }
+
             if (!window.productDetailsData || typeof normalizeKey !== 'function') {
                 return;
             }
@@ -802,7 +836,7 @@
                         data = productDetailsByKey[normalizeKey(productName)];
                     }
                     if (!data) {
-                        data = { name: productName, image: imgSrc, rating: 4.5, reviews: 0, description: 'Detalle pr�ximamente disponible.', price: 0, emoji: '\uD83C\uDF66' };
+                        data = { name: productName, image: imgSrc, rating: 4.5, reviews: 0, description: 'Detalle proximo disponible.', price: 0, emoji: '\uD83C\uDF66' };
                         window.productDetailsData[productName] = data;
                     } else {
                         data.image = imgSrc;
