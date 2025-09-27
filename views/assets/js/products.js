@@ -2,57 +2,57 @@
 window.productDetailsData = {
   'CHOCO COPA': {
     name: 'CHOCO COPA',
-    image: 'views/assets/img/CHOCOCOPA .png',
+    image: 'views/assets/img/crepaPrueba.png',
     rating: 4.9,
     reviews: 234,
     description: 'Helado de chocolate con toppings y salsa especial.',
     price: 5.50,
-    emoji: '🍫'
+    emoji: '??'
   },
   'MANGONADA': {
     name: 'MANGONADA',
-    image: 'views/assets/img/2.png',
+    image: 'views/assets/img/mangonada.png',
     rating: 4.8,
     reviews: 189,
-    description: 'Refrescante mangonada tropical con chile y limón.',
+    description: 'Refrescante mangonada tropical con chile y limon.',
     price: 6.00,
-    emoji: '🥭'
+    emoji: '??'
   },
   'MILKSHAKE': {
     name: 'MILKSHAKE',
-    image: 'views/assets/img/MILKSHAKE.png',
+    image: 'views/assets/img/milkshakeOreo.png',
     rating: 4.7,
     reviews: 156,
     description: 'Milkshake cremoso con galleta y chocolate.',
     price: 5.25,
-    emoji: '🥤'
+    emoji: '??'
   },
-  'Vainilla Madagascar': {
-    name: 'Vainilla Madagascar',
-    image: 'views/assets/img/logo heladeria con edicion.png',
+  'BANANA SPLIT': {
+    name: 'BANANA SPLIT',
+    image: 'views/assets/img/bananaSplit.png',
     rating: 4.9,
     reviews: 298,
     description: 'Helado de vainilla premium de Madagascar.',
     price: 4.75,
-    emoji: '🍨'
+    emoji: '??'
   },
-  'Coco Caribeño': {
-    name: 'Coco Caribeño',
-    image: 'views/assets/img/Diseño Sticker heladería.png',
+  'COPO': {
+    name: 'COPO',
+    image: 'views/assets/img/copo.png',
     rating: 4.6,
     reviews: 142,
-    description: 'Helado de coco con sabor caribeño.',
+    description: 'Helado de coco con sabor caribeno.',
     price: 5.10,
-    emoji: '🥥'
+    emoji: '??'
   },
-  'Limón Siciliano': {
-    name: 'Limón Siciliano',
-    image: 'views/assets/img/COPO HELADO.png',
+  'COPA OREO': {
+    name: 'COPA OREO',
+    image: 'views/assets/img/copaOreo.png',
     rating: 4.8,
     reviews: 167,
-    description: 'Helado refrescante de limón siciliano.',
+    description: 'Helado refrescante de limon siciliano.',
     price: 4.90,
-    emoji: '🍋'
+    emoji: '??'
   }
 };
 
